@@ -1,16 +1,16 @@
 package com.github.rodiond26.sml.service;
 
-import com.github.rodiond26.sml.entity.Grade;
+import com.github.rodiond26.sml.dto.GradeDto;
 
 import java.util.List;
 
 public interface GradeService {
 
-    List<Grade> findAll();
+    List<GradeDto> findAll();
 
-    Grade findById(Long id);
+    GradeDto findById(Long id);
 
-    Grade save(Grade grade);
+    GradeDto save(GradeDto gradeDto);
 
     void deleteById(Long id);
 }

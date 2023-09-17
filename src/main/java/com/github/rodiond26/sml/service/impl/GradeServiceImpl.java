@@ -1,5 +1,6 @@
 package com.github.rodiond26.sml.service.impl;
 
+import com.github.rodiond26.sml.dto.GradeDto;
 import com.github.rodiond26.sml.entity.Grade;
 import com.github.rodiond26.sml.repository.GradeRepository;
 import com.github.rodiond26.sml.service.GradeService;
@@ -9,31 +10,34 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+import static com.github.rodiond26.sml.mapper.GradeMapper.*;
+
 @Service
 @RequiredArgsConstructor
 public class GradeServiceImpl implements GradeService {
 
-    private final GradeRepository gradeRepository;
+    private final GradeRepository repository;
 
     @Override
-    public List<Grade> findAll() {
-        return gradeRepository.findAll();
+    public List<GradeDto> findAll() {
+        return toDtos(repository.findAll());
     }
 
     @Override
-    public Grade findById(Long id) {
-        return gradeRepository.findById(id);
+    public GradeDto findById(Long id) {
+        return toDto(repository.findById(id));
     }
 
     @Transactional
     @Override
-    public Grade save(Grade grade) {
-        return gradeRepository.save(grade);
+    public GradeDto save(GradeDto gradeDto) {
+        Grade grade = repository.save(toEntity(gradeDto));
+        return toDto(grade);
     }
 
     @Transactional
     @Override
     public void deleteById(Long id) {
-        gradeRepository.deleteById(id);
+        repository.deleteById(id);
     }
 }

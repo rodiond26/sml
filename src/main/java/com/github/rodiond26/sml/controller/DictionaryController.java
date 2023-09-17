@@ -1,7 +1,7 @@
 package com.github.rodiond26.sml.controller;
 
 import com.github.rodiond26.sml.dto.AppRestResponse;
-import com.github.rodiond26.sml.entity.Grade;
+import com.github.rodiond26.sml.dto.GradeDto;
 import com.github.rodiond26.sml.service.GradeService;
 import com.sun.istack.NotNull;
 import io.swagger.v3.oas.annotations.Operation;
@@ -27,7 +27,7 @@ public class DictionaryController {
             description = "Получить справочник оценок"
     )
     @GetMapping("/grades")
-    public AppRestResponse<List<Grade>> getAllGrades() {
+    public AppRestResponse<List<GradeDto>> getAllGrades() {
         return AppRestResponse.success(gradeService.findAll());
     }
 
@@ -36,7 +36,7 @@ public class DictionaryController {
             description = "Получение оценки по идентификатору"
     )
     @GetMapping("/grades/{gradeId}")
-    public AppRestResponse<Grade> getGrade(@PathVariable @Min(0) Long gradeId) {
+    public AppRestResponse<GradeDto> getGrade(@PathVariable @Min(0) Long gradeId) {
         return AppRestResponse.success(gradeService.findById(gradeId));
     }
 
@@ -45,9 +45,9 @@ public class DictionaryController {
             description = "Добавить оценку в справочник"
     )
     @PostMapping("/grades")
-    public AppRestResponse<Grade> addGrade(@RequestBody @NotNull Grade grade) {
-        grade.setId(null);
-        return AppRestResponse.success(gradeService.save(grade));
+    public AppRestResponse<GradeDto> addGrade(@RequestBody @NotNull GradeDto gradeDto) {
+        gradeDto.setId(null);
+        return AppRestResponse.success(gradeService.save(gradeDto));
     }
 
     @Operation(
@@ -55,8 +55,8 @@ public class DictionaryController {
             description = "Обновить оценку по идентификатору"
     )
     @PutMapping("/grades")
-    public AppRestResponse<Grade> updateGrade(@RequestBody @NotNull Grade grade) {
-        return AppRestResponse.success(gradeService.save(grade));
+    public AppRestResponse<GradeDto> updateGrade(@RequestBody @NotNull GradeDto gradeDto) {
+        return AppRestResponse.success(gradeService.save(gradeDto));
     }
 
     @Operation(
@@ -64,7 +64,7 @@ public class DictionaryController {
             description = "Удалить оценку по идентификатору"
     )
     @DeleteMapping("/grades/{gradeId}")
-    public AppRestResponse<Grade> deleteGrade(@PathVariable @Min(0) Long gradeId) {
+    public AppRestResponse<GradeDto> deleteGrade(@PathVariable @Min(0) Long gradeId) {
         gradeService.deleteById(gradeId);
         return AppRestResponse.emptySuccess();
     }

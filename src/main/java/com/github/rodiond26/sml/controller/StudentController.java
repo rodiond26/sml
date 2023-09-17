@@ -29,7 +29,7 @@ import java.util.List;
 @Validated
 public class StudentController {
 
-    private final StudentService studentService;
+    private final StudentService service;
 
     @Operation(
             summary = "Получить всех студентов",
@@ -37,7 +37,7 @@ public class StudentController {
     )
     @GetMapping("")
     public AppRestResponse<List<StudentDto>> getAllStudents() {
-        return AppRestResponse.success(studentService.findAll());
+        return AppRestResponse.success(service.findAll());
     }
 
     @Operation(
@@ -46,7 +46,7 @@ public class StudentController {
     )
     @GetMapping("/{studentId}")
     public AppRestResponse<StudentDto> getStudent(@PathVariable @Min(0) Long studentId) {
-        return AppRestResponse.success(studentService.findById(studentId));
+        return AppRestResponse.success(service.findById(studentId));
     }
 
     @Operation(
@@ -56,7 +56,7 @@ public class StudentController {
     @PostMapping("")
     public AppRestResponse<StudentDto> addStudent(@RequestBody @NotNull StudentDto studentDto) {
         studentDto.setId(null);
-        return AppRestResponse.success(studentService.save(studentDto));
+        return AppRestResponse.success(service.save(studentDto));
     }
 
     @Operation(
@@ -65,7 +65,7 @@ public class StudentController {
     )
     @PutMapping("")
     public AppRestResponse<StudentDto> updateStudent(@RequestBody @NotNull StudentDto studentDto) {
-        return AppRestResponse.success(studentService.save(studentDto));
+        return AppRestResponse.success(service.save(studentDto));
     }
 
     @Operation(
@@ -74,7 +74,7 @@ public class StudentController {
     )
     @DeleteMapping("/{studentId}")
     public AppRestResponse<StudentDto> deleteStudent(@PathVariable @Min(0) Long studentId) {
-        studentService.deleteById(studentId);
+        service.deleteById(studentId);
         return AppRestResponse.emptySuccess();
     }
 }
