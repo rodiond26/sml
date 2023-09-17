@@ -69,6 +69,15 @@ public class StudentController {
     }
 
     @Operation(
+            summary = "Обновить оценку студента",
+            description = "Обновить оценку студента по идентификатору"
+    )
+    @PutMapping("/{studentId}/grades")
+    public AppRestResponse<StudentDto> updateStudentGrade(@PathVariable @Min(0) Long studentId, @RequestBody Long gradeId) {
+        return AppRestResponse.success(service.save(studentId, gradeId));
+    }
+
+    @Operation(
             summary = "Удалить студента",
             description = "Удалить студента по идентификатору"
     )

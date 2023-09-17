@@ -13,4 +13,6 @@ public interface StudentService {
     StudentDto save(StudentDto student);
 
     void deleteById(Long id);
+
+    StudentDto save(Long studentId, Long gradeId);
 }
