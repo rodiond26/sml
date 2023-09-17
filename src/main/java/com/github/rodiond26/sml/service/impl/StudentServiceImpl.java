@@ -1,5 +1,6 @@
 package com.github.rodiond26.sml.service.impl;
 
+import com.github.rodiond26.sml.dto.StudentDto;
 import com.github.rodiond26.sml.entity.Student;
 import com.github.rodiond26.sml.repository.StudentRepository;
 import com.github.rodiond26.sml.service.StudentService;
@@ -9,31 +10,34 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+import static com.github.rodiond26.sml.mapper.StudentMapper.*;
+
 @Service
 @RequiredArgsConstructor
 public class StudentServiceImpl implements StudentService {
 
-    private final StudentRepository gradeRepository;
+    private final StudentRepository repository;
 
     @Override
-    public List<Student> findAll() {
-        return gradeRepository.findAll();
+    public List<StudentDto> findAll() {
+        return toDtos(repository.findAll());
     }
 
     @Override
-    public Student findById(Long id) {
-        return gradeRepository.findById(id);
+    public StudentDto findById(Long id) {
+        return toDto(repository.findById(id));
     }
 
     @Transactional
     @Override
-    public Student save(Student student) {
-        return gradeRepository.save(student);
+    public StudentDto save(StudentDto studentDto) {
+        Student student = repository.save(toEntity(studentDto));
+        return toDto(student);
     }
 
     @Transactional
     @Override
     public void deleteById(Long id) {
-        gradeRepository.deleteById(id);
+        repository.deleteById(id);
     }
 }
