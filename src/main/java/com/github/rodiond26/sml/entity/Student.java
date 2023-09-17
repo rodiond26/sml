@@ -16,7 +16,7 @@ import java.time.LocalDate;
 public class Student {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "student_id")
     private Long id;
     @Column(name = "full_name")
