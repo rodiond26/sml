@@ -6,7 +6,7 @@ DROP TABLE IF EXISTS public.grade_dict;
 
 CREATE TABLE IF NOT EXISTS public.grade_dict
 (
-    grade_id bigint NOT NULL,
+    grade_id serial NOT NULL,
     grade_text character varying(255),
     min_value double precision,
     max_value double precision,
@@ -20,7 +20,7 @@ ALTER TABLE IF EXISTS public.grade_dict
 
 CREATE TABLE IF NOT EXISTS public.students
 (
-    student_id bigint NOT NULL,
+    student_id serial NOT NULL,
     full_name character varying(255),
     date_birth date,
     student_grade bigint,
