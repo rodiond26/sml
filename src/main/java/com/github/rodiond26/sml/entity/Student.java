@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
-@Table( name = "students")
+@Table(name = "students")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -24,7 +24,7 @@ public class Student {
     private LocalDate birthDate;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "grade_dict_grade_id")
+    @JoinColumn(name = "student_grade")
     @ToString.Exclude
     private Grade grade;
 }

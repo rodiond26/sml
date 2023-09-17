@@ -6,7 +6,6 @@ import com.github.rodiond26.sml.service.GradeService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,20 +16,14 @@ import java.util.List;
 @RequiredArgsConstructor
 public class DictionaryController {
 
-
-    @Value("${spring.sql.init.schema-locations}")
-    private static String path;
-
     private final GradeService gradeService;
 
     @Operation(
-            summary = "Получить оценку",
-            description = "Получение оценки по идентификатору"
+            summary = "Получить справочник оценок",
+            description = "Получить справочник оценок"
     )
     @GetMapping("/grades")
-    public AppRestResponse<List<Grade>> getGrade1() {
-        System.out.println("path = " + path);
-
+    public AppRestResponse<List<Grade>> getAllGrades() {
         return AppRestResponse.success(gradeService.findAll());
     }
 
@@ -44,8 +37,8 @@ public class DictionaryController {
     }
 
     @Operation(
-            summary = "Получить оценку",
-            description = "Получение оценки по идентификатору"
+            summary = "Добавить оценку",
+            description = "Добавить оценку в справочник"
     )
     @PostMapping("/grades")
     public AppRestResponse<Grade> addGrade(@RequestBody Grade grade) {
@@ -54,8 +47,8 @@ public class DictionaryController {
     }
 
     @Operation(
-            summary = "Получить оценку",
-            description = "Получение оценки по идентификатору"
+            summary = "Обновить оценку",
+            description = "Обновить оценку по идентификатору"
     )
     @PutMapping("/grades")
     public AppRestResponse<Grade> updateGrade(@RequestBody Grade grade) {
@@ -63,8 +56,8 @@ public class DictionaryController {
     }
 
     @Operation(
-            summary = "Получить оценку",
-            description = "Получение оценки по идентификатору"
+            summary = "Удалить оценку",
+            description = "Удалить оценку по идентификатору"
     )
     @DeleteMapping("/grades/{gradeId}")
     public AppRestResponse<Grade> deleteGrade(@PathVariable Long gradeId) {

@@ -6,7 +6,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
-import javax.persistence.TypedQuery;
 import java.util.List;
 
 @Repository
@@ -17,21 +16,19 @@ public class GradeRepositoryImpl implements GradeRepository {
 
     @Override
     public List<Grade> findAll() {
-        TypedQuery<Grade> query = entityManager.createQuery("from Grade", Grade.class);
-        List<Grade> grades = query.getResultList();
-        return grades;
+        return entityManager
+                .createQuery("from Grade", Grade.class)
+                .getResultList();
     }
 
     @Override
     public Grade findById(Long id) {
-        Grade grade = entityManager.find(Grade.class, id);
-        return grade;
+        return entityManager.find(Grade.class, id);
     }
 
     @Override
     public Grade save(Grade grade) {
-        Grade updatedGrade = entityManager.merge(grade);
-        return updatedGrade;
+        return entityManager.merge(grade);
     }
 
     @Override
