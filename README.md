@@ -25,7 +25,7 @@ Swagger
 
 - http://localhost:8080/sml/v3/api-docs.yaml
 
-Развернуть исходную версию БД с помощью файлов:
+Исходная версия БД загружается с помощью файлов:
 
 - [001-schema.sql](./sql/001-schema.sql)
 - [002-data.sql](./sql/002-data.sql)
