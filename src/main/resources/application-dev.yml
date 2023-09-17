@@ -1,0 +1,15 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    driverClassName: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: 1qaz2wsx
+    initialization-mode: always
+  sql:
+    init:
+      mode: always
+      schema-locations: classpath*:/sql/001-schema.sql
+      data-locations: classpath*:/sql/002-data.sql
