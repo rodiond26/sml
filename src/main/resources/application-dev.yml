@@ -8,10 +8,10 @@ spring:
     username: postgres
     password: 1qaz2wsx
     initialization-mode: always
-#    data: classpath*:../../../sql/*.sql
-#  sql:
-#    data: classpath*:../../../sql/*.sql"
-#    init:
-#      schema-locations: classpath*:../../../sql/schema.sql
-#      data-locations: classpath*:../../../sql/data.sql
-#      mode: always
+    data: classpath*:../../../sql/*.sql
+  sql:
+    data: classpath*:../../../sql/*.sql"
+    init:
+      mode: always
+      schema-locations: classpath*:/sql/schema.sql
+      data-locations: classpath*:/sql/data.sql

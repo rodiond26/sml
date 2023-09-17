@@ -13,7 +13,7 @@ services:
       PGDATA: /var/lib/postgresql/data
     volumes:
       - db-data:/var/lib/postgresql/data
-      - ./sql/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./sql/:/docker-entrypoint-initdb.d/
     ports:
       - "5432:5432"
     restart: always
@@ -42,7 +42,7 @@ services:
         condition: service_healthy
 
   app:
-    container_name: dixy-demo
+    container_name: sml-demo
     build:
       context: ./
       dockerfile: Dockerfile
